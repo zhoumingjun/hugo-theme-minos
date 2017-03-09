@@ -22,7 +22,8 @@
                 </div>
             </div>
             {{ end }}
-            {{ if .Site.Params.disqusShortname }}
+            
+            {{ if .Site.DisqusShortname }}
             <div class="article-comment-link-wrap">
                 <a href="{{ .RelPermalink }}#disqus_thread" class="article-comment-link">Comments</a>
             </div>
@@ -63,16 +64,18 @@
                         if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
 
                         active.each(function (i, e) {
-                            $(e).removeClass('active').siblings('ul').hide();
+                            // $(e).removeClass('active').siblings('ul').hide();
+                            $(e).removeClass('active');
                         });
                         $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
-                            $(e).children('a').addClass('active').siblings('ul').show();
+                            // $(e).children('a').addClass('active').siblings('ul').show();
+                            $(e).children('a').addClass('active')
                         });
                     }
 
                     $window.on('scroll', onScroll);
                     $(document).ready(function() {
-                        $toc.find('a').parent('li').find('ul').hide();
+                        // $toc.find('a').parent('li').find('ul').hide();
                         onScroll();
                         document.getElementsByClassName('article-toc')[0].style.display = '';
                     });
