@@ -2,7 +2,7 @@
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; {{ .Now.Format "2006"}} {{ or .Site.Author .Site.Title }}&nbsp;
-            Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos">Minos</a>
+            Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/zhoumingjun/hugo-theme-minos">Minos</a>
         </div>
     </div>
     {{ template "_internal/google_analytics_async.html" . }}
@@ -28,35 +28,7 @@
         });
     </script>
 
-        <!-- LaTeX math rendering -->
-    {{ if or .Params.math .Site.Params.math }}
-    <script type="text/javascript">
-        window.MathJax = {
-            tex2jax: {
-                inlineMath: [['$','$'], ['\\(','\\)']],
-                displayMath: [['$$','$$'], ['\[','\]']],
-                processEscapes: true,
-                processEnvironments: true,
-                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-                TeX: { equationNumbers: { autoNumber: "AMS" },
-                    extensions: ["AMSmath.js", "AMSsymbols.js"] }
-            },
-            AuthorInit: function () {
-                MathJax.Hub.Register.StartupHook("Begin",function () {
-                    MathJax.Hub.Queue(function() {
-                        var all = MathJax.Hub.getAllJax(), i;
-                        for(i = 0; i < all.length; i += 1) {
-                            all[i].SourceElement().parentNode.className += ' has-jax';
-                        }
-                    })
-                });
-            }
-        };
-    </script>
+    {{ partial "plugins/mathjax.html" . }}
+    {{ partial "plugins/graphviz.html" . }}
 
- 
-    <script  type="text/javascript"
-        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
-    {{ end }}
 </footer>
